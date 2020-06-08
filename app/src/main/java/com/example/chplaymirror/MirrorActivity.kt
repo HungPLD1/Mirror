@@ -31,7 +31,7 @@ class MirrorActivity : AppCompatActivity(), SurfaceHolder.Callback {
         makeItFullScreen()
         setContentView(R.layout.mirror_activity)
         setLightParam(30F)
-        initCamera()
+
         initSurface()
         initFeatureZoom()
         initFeatureLight()
@@ -74,6 +74,7 @@ class MirrorActivity : AppCompatActivity(), SurfaceHolder.Callback {
     override fun onResume() {
         super.onResume()
         if (isPermissionGranted()){
+            initCamera()
             camera?.startPreview()
         }else{
             startActivity(Intent(this,RequestPerMissionActivity::class.java))
@@ -138,7 +139,7 @@ class MirrorActivity : AppCompatActivity(), SurfaceHolder.Callback {
 
     private fun initCamera() {
         try {
-            camera = openFrontFacingCameraGingerbread()
+            openFrontFacingCameraGingerbread()
         } catch (e: RuntimeException) {
             Log.e(TAG, "init_camera: $e")
             return
@@ -150,8 +151,8 @@ class MirrorActivity : AppCompatActivity(), SurfaceHolder.Callback {
     override fun surfaceChanged(holder: SurfaceHolder?, format: Int, width: Int, height: Int) {}
 
     override fun surfaceDestroyed(holder: SurfaceHolder?) {
-        camera?.stopPreview();
-        camera?.release();
+        camera?.release()
+        camera?.stopPreview()
     }
 
     override fun surfaceCreated(holder: SurfaceHolder?) {
@@ -164,16 +165,16 @@ class MirrorActivity : AppCompatActivity(), SurfaceHolder.Callback {
         }
     }
 
-    private fun openFrontFacingCameraGingerbread(): Camera? {
+    private fun openFrontFacingCameraGingerbread() {
         var cameraCount = 0
-        var cam: Camera? = null
+        camera = null
         val cameraInfo = CameraInfo()
         cameraCount = Camera.getNumberOfCameras()
         for (camIdx in 0 until cameraCount) {
             Camera.getCameraInfo(camIdx, cameraInfo)
             if (cameraInfo.facing == CameraInfo.CAMERA_FACING_FRONT) {
                 try {
-                    cam = Camera.open(camIdx)
+                    camera = Camera.open(camIdx)
                 } catch (e: java.lang.RuntimeException) {
                     Log.e(
                         TAG,
@@ -182,7 +183,6 @@ class MirrorActivity : AppCompatActivity(), SurfaceHolder.Callback {
                 }
             }
         }
-        return cam
     }
 
     private fun setLightParam(lightValue: Float) {
