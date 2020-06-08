@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MirrorV</string>
+    <string name="request_permission"><u>Touch to allow, thanks !!!</u></string>
+
+</resources>
