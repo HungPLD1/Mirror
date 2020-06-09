@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">MirrorV</string>
     <string name="request_permission"><u>Touch to allow, thanks !!!</u></string>
+    <string name="id_ads">ca-app-pub-7516116336581520/8906888353</string>
 
 </resources>

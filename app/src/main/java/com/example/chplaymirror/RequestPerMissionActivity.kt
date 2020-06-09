@@ -136,6 +136,7 @@ class RequestPerMissionActivity : AppCompatActivity() {
 
     private fun goToMirrorActivity() {
         startActivity(Intent(this, MirrorActivity::class.java))
+        finish()
     }
 
     companion object {
