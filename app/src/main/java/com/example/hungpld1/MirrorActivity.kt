@@ -1,4 +1,4 @@
-package com.example.chplaymirror
+package com.example.hungpld1
 
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -48,7 +48,7 @@ class MirrorActivity : AppCompatActivity(), SurfaceHolder.Callback {
             }
 
             override fun onAdFailedToLoad(errorCode: Int) {
-                // Code to be executed when an ad request fails.
+                Log.e(TAG, "onAdFailedToLoad: $errorCode")
             }
 
             override fun onAdOpened() {
@@ -151,8 +151,8 @@ class MirrorActivity : AppCompatActivity(), SurfaceHolder.Callback {
     override fun surfaceChanged(holder: SurfaceHolder?, format: Int, width: Int, height: Int) {}
 
     override fun surfaceDestroyed(holder: SurfaceHolder?) {
-        camera?.release()
         camera?.stopPreview()
+        camera?.release()
     }
 
     override fun surfaceCreated(holder: SurfaceHolder?) {

@@ -1,4 +1,4 @@
-package com.example.chplaymirror
+package com.example.hungpld1
 
 import android.Manifest
 import android.content.Intent
