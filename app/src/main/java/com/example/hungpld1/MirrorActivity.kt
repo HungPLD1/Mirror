@@ -15,11 +15,13 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.RequestConfiguration
 import com.warkiz.widget.IndicatorSeekBar
 import com.warkiz.widget.OnSeekChangeListener
 import com.warkiz.widget.SeekParams
 import kotlinx.android.synthetic.main.mirror_activity.*
 import kotlinx.android.synthetic.main.mirror_activity.adView
+import java.util.*
 
 class MirrorActivity : AppCompatActivity(), SurfaceHolder.Callback {
     private var surfaceHolder: SurfaceHolder? = null
